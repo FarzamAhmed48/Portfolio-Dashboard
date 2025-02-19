@@ -17,7 +17,8 @@ const Login = () => {
   const dispatch = useDispatch();
   const navigateTo = useNavigate();
 
-  const handleLogin = () => {
+  const handleLogin = (e,email,password) => {
+    e.preventDefault()
     dispatch(login(email, password));
   };
 
@@ -73,7 +74,7 @@ const Login = () => {
               <SpecialLoadingButton content={"Loggin In"} />
             ) : (
               <Button
-                onClick={() => handleLogin(email, password)}
+                onClick={(e) => handleLogin(e,email, password)}
                 className="w-full"
               >
                 Login

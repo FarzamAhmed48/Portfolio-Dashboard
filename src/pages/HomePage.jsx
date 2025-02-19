@@ -26,15 +26,30 @@ import AddProject from "./sub-components/AddProject";
 import AddSoftwareApplications from "./sub-components/AddSoftwareApplications";
 import Account from "./sub-components/Account";
 import { useDispatch, useSelector } from "react-redux";
-import { logout } from "@/store/slices/userSlice";
+import { getUser, logout } from "@/store/slices/userSlice";
 import { toast } from "react-toastify";
 import Messages from "./sub-components/Messages";
 import AddTimeline from "./sub-components/AddTimeline";
+import { getAllSkills } from "@/store/slices/skillSlice";
+import { getAllSoftwareApplications } from "@/store/slices/softwareApplicationSlice";
+import { getAllTimeline } from "@/store/slices/timelineSlice";
+import { getAllMessages } from "@/store/slices/messageSlice";
+import { getAllProjects } from "@/store/slices/projectSlice";
 
 const HomePage = () => {
   const [active, setActive] = useState("");
   const { isAuthenticated, error, user } = useSelector((state) => state.user);
+  console.log(isAuthenticated,"haischzj")
+  console.log(user,"usehjbsv")
   const dispatch = useDispatch();
+  // useEffect(() => {
+  //   dispatch(getUser());
+  //   dispatch(getAllSkills());
+  //   dispatch(getAllSoftwareApplications());
+  //   dispatch(getAllTimeline());
+  //   dispatch(getAllMessages());
+  //   dispatch(getAllProjects());
+  // }, [isAuthenticated]);
   const handleLogout = () => {
     dispatch(logout());
     toast.success("Logged Out!");
@@ -48,6 +63,14 @@ const HomePage = () => {
     if (!isAuthenticated) {
       navigateTo("/login");
     }
+    // if(isAuthenticated){
+
+    //   dispatch(getUser());
+    //   dispatch(getAllSkills());
+    //   dispatch(getAllSoftwareApplications());
+    //   dispatch(getAllTimeline());
+    //   dispatch(getAllMessages());
+    // }
   }, [isAuthenticated]);
   return (
     <div className="flex min-h-screen w-full flex-col bg-muted/40">
@@ -318,7 +341,7 @@ const HomePage = () => {
             className="w-20 h-20 rounded-full max-[900px]:hidden"
           />
           <h1 className="text-4xl max-[900px]:text-2xl">
-            Welcome back, {user.fullName}
+            Welcome back, {user?.fullName}
           </h1>
         </div>
       </header>

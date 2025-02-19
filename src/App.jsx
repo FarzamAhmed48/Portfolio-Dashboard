@@ -21,16 +21,7 @@ import { getAllProjects } from "./store/slices/projectSlice";
 import ViewProject from "./pages/ViewProject";
 
 function App() {
-  const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(getUser());
-    dispatch(getAllSkills());
-    dispatch(getAllSoftwareApplications());
-    dispatch(getAllTimeline());
-    dispatch(getAllMessages());
-    dispatch(getAllProjects());
-  }, []);
   return (
     <Router>
       <Routes>
